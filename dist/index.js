@@ -426,7 +426,7 @@ var gerarAppkey = function (chavePrivada) {
     });
 };
 
-var OitiLivenessComponent = function (_a) {
+var LivenessComponent = function (_a) {
     var settings = _a.settings;
     return (React__default["default"].createElement("div", { id: "content", className: "content" },
         React__default["default"].createElement("div", { id: "container", className: "container" },
@@ -447,5 +447,5 @@ var OitiLivenessComponent = function (_a) {
         React__default["default"].createElement("canvas", { id: "fc_canvas" })));
 };
 
-exports["default"] = OitiLivenessComponent;
+exports["default"] = LivenessComponent;
 //# sourceMappingURL=index.js.map

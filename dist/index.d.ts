@@ -4,5 +4,5 @@ import SdkSettings from "./Interfaces/Settings/SdkSettings";
 interface ComponentInterface {
     settings: SdkSettings;
 }
-declare const OitiLivenessComponent: React.FC<ComponentInterface>;
-export default OitiLivenessComponent;
+declare const LivenessComponent: React.FC<ComponentInterface>;
+export default LivenessComponent;
