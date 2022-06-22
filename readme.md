@@ -9,24 +9,32 @@ yarn add livenes-sdk-component
 Para chamar o componente
 
 ```ts
+// ====== IMPORTS
+import LivenessComponent from "livenes-sdk-component";
+import SdkSettings from "livenes-sdk-component/dist/Interfaces/Settings/SdkSettings";
+
 // ====== Modo 1
-interface SdkSettings {
-    cpf: string,
-    fcvarUrlbase: string,
-    nascimento: string,
-    nome: string,
-    user: string,
-    pass: string,
-};
+// Utilizando uma const para setar os dados.
+function App() {
+  const sdkSettings: SdkSettings = {} as SdkSettings;
 
-// Objeto com as informações
-const settings: SdkSettings = { } as SdkSettings;
-
-// Passando esse objeto de configuração
-<LivenessComponent settings={settings} />
-
+  return <LivenessComponent settings={sdkSettings} />;
+}
 
 // ====== Modo 2
 // Settando as informações via desestruturação
-<LivenessComponent settings={{ cpf: "", fcvarUrlbase: "", nascimento: "", nome: "", user: "", pass: "" }} />;
+function App() {
+  return (
+    <LivenessComponent
+      settings={{
+        cpf: "",
+        fcvarUrlbase: "",
+        nascimento: "",
+        nome: "",
+        user: "",
+        pass: "",
+      }}
+    />
+  );
+}
 ```
