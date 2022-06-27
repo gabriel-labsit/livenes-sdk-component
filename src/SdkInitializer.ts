@@ -1,5 +1,5 @@
 import SdkSettings from "./Interfaces/Settings/SdkSettings";
-import { startCapture } from "./Componentes/Sdk";
+import { startCamera, startCapture } from "./Componentes/Sdk";
 import jQuery from "jquery";
 import Token from "./Interfaces/Responses/Token";
 
@@ -20,6 +20,8 @@ export const IniciarFluxo = (settings: SdkSettings) => {
 
   gerarCredencial();
 };
+
+export const StartCamera = () => startCamera();
 
 // Gera credencial de acesso. Deve ser feita no backend
 const gerarCredencial = () => {

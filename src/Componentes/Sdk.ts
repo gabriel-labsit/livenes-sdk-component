@@ -37,7 +37,7 @@ let canvasH = 480;
 
 let canContinue = true;
 
-function startCamera() {
+const startCamera = () => {
   // get video element
   let video = document.getElementById("player")! as HTMLMediaElement;
   video.setAttribute("autoplay", "");
@@ -93,7 +93,7 @@ function startCamera() {
         allowEnterKey: false,
       }).then(() => location.reload());
     });
-}
+};
 
 const stopCameraInternal = (stream: any) =>
   stream.getVideoTracks().forEach((track: { stop: () => any }) => track.stop());
@@ -407,7 +407,7 @@ function onFinishFaceCaptcha(response: any) {
         },
         error: function(res){
             // ops!
-        }        
+        }
     });
     */
 }
@@ -476,4 +476,4 @@ function encChData(data: any) {
   return encodeURIComponent(result);
 }
 
-export { startCapture };
+export { startCapture, startCamera };

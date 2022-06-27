@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./index.css";
 import SdkSettings from "./Interfaces/Settings/SdkSettings";
 
-import { IniciarFluxo } from "./SdkInitializer";
+import { IniciarFluxo, StartCamera } from "./SdkInitializer";
 
 interface ComponentInterface {
   settings: SdkSettings;
 }
 
 const LivenessComponent: React.FC<ComponentInterface> = ({ settings }) => {
+  useEffect(() => StartCamera(), []);
+
   return (
     <div id="content" className="content">
       <div id="container" className="container">
