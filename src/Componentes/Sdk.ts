@@ -37,7 +37,7 @@ let canvasH = 480;
 
 let canContinue = true;
 
-const startCamera = () => {
+export const startCamera = async () => {
   // get video element
   let video = document.getElementById("player")! as HTMLMediaElement;
   video.setAttribute("autoplay", "");
@@ -66,23 +66,22 @@ const startCamera = () => {
     };
   }
 
-  // tenta abrir a câmera de video
   navigator.mediaDevices
     .getUserMedia(constraints)
-    .then(function success(stream) {
-      video.srcObject = stream;
+    .then((stream) => {
+      if (stream.active) {
+        video.srcObject = stream;
 
-      // exibe botão INICIAR
-      $("#divButton").fadeIn();
-      $("#divMsg").fadeIn(700, function () {
-        window.setTimeout(function () {
-          $("#divMsg").fadeOut(700, function () {});
-        }, 1000);
-      });
-
-      stopCameraInternal(stream);
+        // exibe botão INICIAR
+        $("#divButton").fadeIn();
+        $("#divMsg").fadeIn(700, () => {
+          window.setTimeout(() => {
+            $("#divMsg").fadeOut(700, () => {});
+          }, 1000);
+        });
+      }
     })
-    .catch(function (err) {
+    .catch((err) => {
       canContinue = false;
       addMessage("No camera! " + err);
       Swal.fire({
@@ -93,6 +92,40 @@ const startCamera = () => {
         allowEnterKey: false,
       }).then(() => location.reload());
     });
+
+  // tenta abrir a câmera de video
+  // navigator.mediaDevices
+  //   // .getUserMedia(constraints)
+  //   .getUserMedia({
+  //     audio: false,
+  //     video: { height: { exact: 480 }, width: { exact: 640 } },
+  //   })
+  //   .then((stream) => {
+  //     console.log(JSON.stringify(stream));
+  //     video.srcObject = stream;
+  //     video.play();
+
+  //     // exibe botão INICIAR
+  //     $("#divButton").fadeIn();
+  //     $("#divMsg").fadeIn(700, function () {
+  //       window.setTimeout(function () {
+  //         $("#divMsg").fadeOut(700, function () {});
+  //       }, 1000);
+  //     });
+
+  //     stopCameraInternal(stream);
+  //   })
+  //   .catch(function (err) {
+  //     canContinue = false;
+  //     addMessage("No camera! " + err);
+  //     Swal.fire({
+  //       title: NoCamera.title_noCamera,
+  //       text: NoCamera.subTitle_noCamera,
+  //       allowOutsideClick: false,
+  //       allowEscapeKey: false,
+  //       allowEnterKey: false,
+  //     }).then(() => location.reload());
+  //   });
 };
 
 const stopCameraInternal = (stream: any) =>
@@ -417,7 +450,7 @@ function addMessage(msg: any) {
 }
 
 // verifica se o navegador é um dispositivo mobile
-function isMobile() {
+const isMobile = () => {
   if (
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
@@ -426,7 +459,7 @@ function isMobile() {
     return true;
   }
   return false;
-}
+};
 
 /* SECURITY */
 function padMsg(source: any) {
@@ -476,4 +509,4 @@ function encChData(data: any) {
   return encodeURIComponent(result);
 }
 
-export { startCapture, startCamera };
+export { startCapture, isMobile };

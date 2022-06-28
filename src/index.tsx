@@ -1,26 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./index.css";
 import SdkSettings from "./Interfaces/Settings/SdkSettings";
 
-import { IniciarFluxo, StartCamera } from "./SdkInitializer";
+import { IniciarFluxo, IniciarCamera } from "./SdkInitializer";
 
 interface ComponentInterface {
   settings: SdkSettings;
 }
 
 const LivenessComponent: React.FC<ComponentInterface> = ({ settings }) => {
-  useEffect(() => StartCamera(), []);
-
   return (
     <div id="content" className="content">
       <div id="container" className="container">
         <div className="outer r4x3">
           <div className="inner">
-            {/* <div id="divPowered">
-              <span className="spanMsg" th:text="#{liveness_msgPowered}">
-                Powered by Oiti Technologies
-              </span>
-            </div> */}
             <div id="overlay" className="overlay"></div>
 
             <div id="content-video" className="content-video">
@@ -53,9 +46,9 @@ const LivenessComponent: React.FC<ComponentInterface> = ({ settings }) => {
         </div>
       </div>
 
-      <canvas id="fc_canvas"></canvas>
+      <canvas id="fc_canvas" style={{ display: "none" }}></canvas>
     </div>
   );
 };
 
-export default LivenessComponent;
+export { LivenessComponent as default, IniciarCamera };
