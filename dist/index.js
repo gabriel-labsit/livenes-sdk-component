@@ -22261,7 +22261,6 @@ var IniciarFluxo = function (settings) {
     }
     if (vazio)
         return;
-    // console.log("Foda-se");
     gerarCredencial();
 };
 var IniciarCamera = function () { return startCamera(); };
