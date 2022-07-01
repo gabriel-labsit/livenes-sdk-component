@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-type Props = {};
-
 export const StyledDiv = styled.div`
   box-sizing: border-box;
   font-family: "Hammersmith One", sans-serif;
