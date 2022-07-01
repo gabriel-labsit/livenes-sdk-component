@@ -1,4 +1,4 @@
-import css from "rollup-plugin-import-css";
+// import css from "rollup-plugin-import-css";
 import typescript from "rollup-plugin-typescript2";
 import copy from "rollup-plugin-copy-assets";
 import nodeResolve from "@rollup/plugin-node-resolve";
@@ -23,8 +23,9 @@ export default {
     copy({
       assets: ["src/Assets"],
     }),
-    css(),
+    // css(),
     typescript({ objectHashIgnoreUnknownHack: true }),
   ],
-  external: ["react", "react-dom", "./index.css"],
+  //external: ["react", "react-dom", "./index.css"],
+  external: ["react", "react-dom"],
 };

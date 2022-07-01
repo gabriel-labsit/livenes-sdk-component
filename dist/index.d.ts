@@ -1,5 +1,4 @@
 import React from "react";
-import "./index.css";
 import SdkSettings from "./Interfaces/Settings/SdkSettings";
 import { IniciarCamera } from "./SdkInitializer";
 interface ComponentInterface {

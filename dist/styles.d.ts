@@ -1,0 +1,17 @@
+export declare const StyledDiv: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const StyledDiv_2: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const StyledDiv_3: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const StyledDiv_4: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const StyledDiv_5: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const StyledDiv_6: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const StyledVideo: import("styled-components").StyledComponent<"video", any, {}, never>;
+export declare const StyledDiv_7: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const StyledDiv_8: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const StyledDiv_9: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const StyledImg: import("styled-components").StyledComponent<"img", any, {}, never>;
+export declare const StyledSpan: import("styled-components").StyledComponent<"span", any, {}, never>;
+export declare const StyledDiv_10: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const StyledImg_2: import("styled-components").StyledComponent<"img", any, {}, never>;
+export declare const StyledDiv_11: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const StyledButton: import("styled-components").StyledComponent<"button", any, {}, never>;
+export declare const StyledCanvas: import("styled-components").StyledComponent<"canvas", any, {}, never>;
