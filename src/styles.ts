@@ -157,7 +157,7 @@ export const DivLoader = styled.div`
 
   @media (max-width: 37em) {
     top: 50%;
-    left: 0px;
+    left: 50%;
   }
 `;
 
