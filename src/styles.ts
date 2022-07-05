@@ -15,7 +15,7 @@ body {
   height: 100%;
   padding: 0px;
   margin: 0px;
-  background-image: url("https://raw.githubusercontent.com/gabriel-labsit/livenes-sdk-component/main/dist/Assets/Images/bg_oiti_matrix.png");
+  background-image: url("https://raw.githubusercontent.com/gabriel-labsit/liveness-assets/main/bg_oiti_matrix.png");
   overflow: hidden;
   text-align: center;
   text-align: -webkit-center;
@@ -33,7 +33,7 @@ body {
 `;
 
 export const Content = styled.div`
-  background-image: url("https://raw.githubusercontent.com/gabriel-labsit/livenes-sdk-component/main/dist/Assets/Images/logo_oiti_trans.png");
+  background-image: url("https://raw.githubusercontent.com/gabriel-labsit/liveness-assets/main/logo_oiti_trans.png");
   background-position-x: 20px;
   background-position-y: 20px;
   background-repeat: no-repeat;
@@ -83,7 +83,7 @@ export const Inner = styled.div`
 `;
 
 export const Overlay = styled.div`
-  background-image: url("https://raw.githubusercontent.com/gabriel-labsit/livenes-sdk-component/1b650bc134c00d0958afd8c10bbc6420c06a1ca3/dist/Assets/Images/mobile_layer-2.1.svg") !important;
+  background-image: url("https://raw.githubusercontent.com/gabriel-labsit/liveness-assets/6d0e8dd5823d60216e65f5f4a8ad70f631195868/desktop_layer-2.1.svg") !important;
   background-repeat: no-repeat !important;
   background-size: 100% 100% !important;
   height: 100%;
@@ -97,7 +97,7 @@ export const Overlay = styled.div`
   border-radius: 0px;
 
   @media (max-width: 37em) {
-    background-image: url("https://raw.githubusercontent.com/gabriel-labsit/livenes-sdk-component/1b650bc134c00d0958afd8c10bbc6420c06a1ca3/dist/Assets/Images/mobile_layer-2.1.svg") !important;
+    background-image: url("https://raw.githubusercontent.com/gabriel-labsit/liveness-assets/6d0e8dd5823d60216e65f5f4a8ad70f631195868/mobile_layer-2.1.svg") !important;
     background-repeat: no-repeat !important;
     background-size: 100% 100% !important;
     height: 100%;
@@ -129,7 +129,7 @@ export const ContentVideo = styled.div`
   }
 `;
 
-export const Video = styled.div`
+export const Video = styled.video`
   @media (max-width: 37em) {
     position: relative;
     z-index: 0;
@@ -146,7 +146,7 @@ export const Video = styled.div`
 
 export const DivLoader = styled.div`
   top: 50%;
-  left: 0px;
+  left: 50%;
   position: absolute;
   width: 100%;
   height: 40px;

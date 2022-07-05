@@ -6,7 +6,7 @@ export declare const OuterR4x3: import("styled-components").StyledComponent<"div
 export declare const Inner: import("styled-components").StyledComponent<"div", any, {}, never>;
 export declare const Overlay: import("styled-components").StyledComponent<"div", any, {}, never>;
 export declare const ContentVideo: import("styled-components").StyledComponent<"div", any, {}, never>;
-export declare const Video: import("styled-components").StyledComponent<"div", any, {}, never>;
+export declare const Video: import("styled-components").StyledComponent<"video", any, {}, never>;
 export declare const DivLoader: import("styled-components").StyledComponent<"div", any, {}, never>;
 export declare const Loader: import("styled-components").StyledComponent<"div", any, {}, never>;
 export declare const DivMessage: import("styled-components").StyledComponent<"div", any, {}, never>;

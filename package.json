@@ -1,6 +1,6 @@
 {
   "name": "livenes-sdk-component",
-  "version": "0.1.9",
+  "version": "0.1.12",
   "main": "dist/index.js",
   "author": {
     "name": "Gabriel Santana Cruz",
