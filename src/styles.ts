@@ -130,6 +130,10 @@ export const ContentVideo = styled.div`
 `;
 
 export const Video = styled.video`
+  height: 100%;
+  transform: rotateY(180deg);
+  margin-left: -50%;
+
   @media (max-width: 37em) {
     position: relative;
     z-index: 0;
