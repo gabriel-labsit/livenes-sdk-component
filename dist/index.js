@@ -21941,7 +21941,7 @@ var startCamera = function () { return __awaiter(void 0, void 0, void 0, functio
     });
 }); };
 // inicia captura dos desafios.
-function startCapture(appKeyParameter) {
+var startCapture = function (appKeyParameter) {
     appkey = appKeyParameter;
     if (!canContinue) {
         Swal.fire({
@@ -21956,13 +21956,12 @@ function startCapture(appKeyParameter) {
     jQuery("#divButton").fadeOut();
     jQuery("#divLoader").fadeIn();
     jQuery("#spanMsg").text(GeneralInformation.gettingStarted);
-    jQuery("#divMsg").fadeIn(1000, function () {
-        startChallenge("");
-    });
-}
+    jQuery("#divMsg").fadeIn(1000, function () { return startChallenge(""); });
+};
 // Busca novos desafios
-function startChallenge(p) {
-    var data = "?nc=" + new Date().getTime() + "&appkey=" + appkey + "&p=" + p;
+var startChallenge = function (p) {
+    //let data = "?nc=" + new Date().getTime() + "&appkey=" + appkey + "&p=" + p;
+    var data = "?nc=".concat(new Date().getTime(), "&appkey=").concat(appkey, "&p=").concat(p);
     jQuery.support.cors = true;
     jQuery.ajax({
         type: "POST",
@@ -22005,9 +22004,9 @@ function startChallenge(p) {
             }).then(function () { return location.reload(); });
         },
     });
-}
+};
 // Preparar desafios
-function prepareChallenge() {
+var prepareChallenge = function () {
     // Intervalo de captura de image do video
     fcvarIntervalSnap = setInterval(function () {
         snapTick();
@@ -22017,15 +22016,13 @@ function prepareChallenge() {
         clearInterval(fcvarIntervalSnap);
         clearInterval(fcvarIntervalChallege);
         clearInterval(fcvarIntervalTimer);
-        jQuery("#divMsg").fadeOut(700, function () {
-            stopChallenge();
-        });
+        jQuery("#divMsg").fadeOut(700, function () { return stopChallenge(); });
     }, fcvarTime * 1000);
     // exibe os desafios na tela
     showChallengeTick(fcvarChallenge, 0);
-}
+};
 // Exibir desafios
-function showChallengeTick(challenges, i) {
+var showChallengeTick = function (challenges, i) {
     fcvarCurCha = challenges[i];
     jQuery("#imgMsg").attr("src", "");
     jQuery("#spanMsg").text("");
@@ -22043,9 +22040,9 @@ function showChallengeTick(challenges, i) {
         // Proximo desafio. Recursive
         showChallengeTick(challenges, ++i);
     }, challenges[i].tempoEmSegundos * 1000);
-}
+};
 // prepara captura de imagem
-function snapTick() {
+var snapTick = function () {
     var snapb64 = snap();
     var snaps = [];
     if (fcvarFirstSnap === "") {
@@ -22061,9 +22058,9 @@ function snapTick() {
             "," +
             snaps[1];
     fcvarSnaps += snapb64;
-}
+};
 // captura imagem da câmera
-function snap() {
+var snap = function () {
     var video = document.querySelector("video");
     var canvas = document.getElementById("fc_canvas");
     var ctx = canvas.getContext("2d");
@@ -22101,9 +22098,9 @@ function snap() {
     var img = new Image();
     img.src = canvas.toDataURL("image/jpeg");
     return img.src;
-}
+};
 // finaliza desafios
-function stopChallenge() {
+var stopChallenge = function () {
     jQuery("#imgMsg").attr("src", "");
     jQuery("#divLoader").fadeIn();
     jQuery("#spanMsg").text(GeneralInformation.wait);
@@ -22156,19 +22153,19 @@ function stopChallenge() {
         },
         beforeSend: function (xhr) { },
     });
-}
+};
 // exibe mensagem de sucesso
-function checkAnimStart() {
+var checkAnimStart = function () {
     Swal.fire({
         title: GeneralInformation.finishedTitle,
         text: GeneralInformation.finishedMsg,
         allowOutsideClick: false,
         allowEscapeKey: false,
         allowEnterKey: false,
-    }).then(function () { return location.reload(); });
-}
+    });
+};
 // exibe informação de insucesso
-function crossAnimStart(responseCaptcha) {
+var crossAnimStart = function (responseCaptcha) {
     var codID = responseCaptcha.codID;
     var msg = BiometricIds[codID] || BiometricIds.biometricCodID;
     Swal.fire({
@@ -22178,9 +22175,9 @@ function crossAnimStart(responseCaptcha) {
         allowEscapeKey: false,
         allowEnterKey: false,
     }).then(function () { return location.reload(); });
-}
+};
 // use este metodo para informar o backend
-function onFinishFaceCaptcha(response) {
+var onFinishFaceCaptcha = function (response) {
     console.log("onFinishFaceCaptcha");
     console.log(response);
     /*
@@ -22199,7 +22196,7 @@ function onFinishFaceCaptcha(response) {
           }
       });
       */
-}
+};
 function addMessage(msg) {
     console.log(msg);
 }
@@ -22211,7 +22208,7 @@ var isMobile = function () {
     return false;
 };
 /* SECURITY */
-function padMsg(source) {
+var padMsg = function (source) {
     var paddingChar = " ";
     var size = 16;
     var x = source.length % size;
@@ -22219,14 +22216,14 @@ function padMsg(source) {
     for (var i = 0; i < padLength; i++)
         source += paddingChar;
     return source;
-}
-function padKey(source) {
+};
+var padKey = function (source) {
     if (source.length > 16) {
         return source.substring(0, 16);
     }
     return padMsg(source);
-}
-function decChData(data) {
+};
+var decChData = function (data) {
     var key = CryptoJS.enc.Latin1.parse(padKey(appkey));
     var iv = CryptoJS.enc.Latin1.parse(padKey(appkey.split("").reverse().join("")));
     var decripted2 = CryptoJS.enc.Utf8.stringify(CryptoJS.AES.decrypt(data, key, {
@@ -22237,8 +22234,8 @@ function decChData(data) {
     decripted2 = decripted2.substring(0, decripted2.lastIndexOf("}") + 1);
     decripted2 = decripted2.trim();
     return decripted2;
-}
-function encChData(data) {
+};
+var encChData = function (data) {
     //var appkey = appkey;
     var key = CryptoJS.enc.Latin1.parse(padKey(appkey));
     var iv = CryptoJS.enc.Latin1.parse(padKey(appkey.split("").reverse().join("")));
@@ -22248,7 +22245,7 @@ function encChData(data) {
         mode: CryptoJS.mode.CBC,
     }).toString();
     return encodeURIComponent(result);
-}
+};
 
 var sdkSettings = {};
 var IniciarFluxo = function (settings) {
@@ -22267,7 +22264,7 @@ var IniciarFluxo = function (settings) {
         return;
     gerarCredencial();
 };
-var IniciarCamera = function () { return startCamera(); };
+var iniciarCamera = function () { return startCamera(); };
 // Gera credencial de acesso. Deve ser feita no backend
 var gerarCredencial = function () {
     var data = jQuery.param({
@@ -23381,44 +23378,9 @@ var LivenessComponent = function (_a) {
                             React__default["default"].createElement("img", { id: "imgChallenge" })),
                         React__default["default"].createElement(DivButton, { id: "divButton" },
                             React__default["default"].createElement(Button, { id: "btnIniciar", onClick: function () { return IniciarFluxo(settings); } }, "INICIAR"))))),
-            React__default["default"].createElement("canvas", { id: "fc_canvas", style: { display: "none" } })))
-    //#region HTML5 Content
-    // <div id="content" className="content">
-    //   <div id="container" className="container">
-    //     <div className="outer r4x3">
-    //       <div className="inner">
-    //         <div id="overlay" className="overlay"></div>
-    //         <div id="content-video" className="content-video">
-    //           <video id="player"></video>
-    //         </div>
-    //         <div id="divLoader">
-    //           <div className="loader"></div>
-    //         </div>
-    //         <div id="divMsg">
-    //           <img id="imgMsg" />
-    //           <span id="spanMsg">CLIQUE EM INICIAR</span>
-    //         </div>
-    //         <div id="divSorriso">
-    //           <img id="imgChallenge" />
-    //         </div>
-    //         <div id="divButton">
-    //           <button
-    //             id="btnIniciar"
-    //             onClick={() => IniciarFluxo(settings)}
-    //             className="rect green"
-    //           >
-    //             INICIAR
-    //           </button>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <canvas id="fc_canvas" style={{ display: "none" }}></canvas>
-    // </div>
-    //#endregion
-    );
+            React__default["default"].createElement("canvas", { id: "fc_canvas", style: { display: "none" } }))));
 };
 
-exports.IniciarCamera = IniciarCamera;
 exports["default"] = LivenessComponent;
+exports.iniciarCamera = iniciarCamera;
 //# sourceMappingURL=index.js.map

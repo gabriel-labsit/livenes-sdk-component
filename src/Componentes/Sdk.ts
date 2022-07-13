@@ -132,7 +132,7 @@ const stopCameraInternal = (stream: any) =>
   stream.getVideoTracks().forEach((track: { stop: () => any }) => track.stop());
 
 // inicia captura dos desafios.
-function startCapture(appKeyParameter: string) {
+const startCapture = (appKeyParameter: string) => {
   appkey = appKeyParameter;
   if (!canContinue) {
     Swal.fire({
@@ -149,14 +149,13 @@ function startCapture(appKeyParameter: string) {
   $("#divLoader").fadeIn();
 
   $("#spanMsg").text(GeneralInformation.gettingStarted);
-  $("#divMsg").fadeIn(1000, function () {
-    startChallenge("");
-  });
-}
+  $("#divMsg").fadeIn(1000, () => startChallenge(""));
+};
 
 // Busca novos desafios
-function startChallenge(p: any) {
-  let data = "?nc=" + new Date().getTime() + "&appkey=" + appkey + "&p=" + p;
+const startChallenge = (p: any) => {
+  //let data = "?nc=" + new Date().getTime() + "&appkey=" + appkey + "&p=" + p;
+  const data = `?nc=${new Date().getTime()}&appkey=${appkey}&p=${p}`;
 
   $.support.cors = true;
   $.ajax({
@@ -170,7 +169,7 @@ function startChallenge(p: any) {
       "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
       "Access-Control-Allow-Origin": "*",
     },
-    success: function (response) {
+    success: (response) => {
       try {
         // resposta da requisição dos desafios
         response = JSON.parse(decChData(response));
@@ -189,7 +188,7 @@ function startChallenge(p: any) {
         console.log(e);
       }
     },
-    error: function (jqXHR, textStatus, errorThrown) {
+    error: (jqXHR, textStatus, errorThrown) => {
       console.log("ERROR");
       fcvarInChallenge = true;
 
@@ -203,32 +202,30 @@ function startChallenge(p: any) {
       }).then(() => location.reload());
     },
   });
-}
+};
 
 // Preparar desafios
-function prepareChallenge() {
+const prepareChallenge = () => {
   // Intervalo de captura de image do video
-  fcvarIntervalSnap = setInterval(function () {
+  fcvarIntervalSnap = setInterval(() => {
     snapTick();
   }, fcvarSnapFrequenceInMillis);
 
   // aguarda fcvarTime em segundos para finalizar os desafios
-  fcvarIntervalTimer = setInterval(function () {
+  fcvarIntervalTimer = setInterval(() => {
     clearInterval(fcvarIntervalSnap);
     clearInterval(fcvarIntervalChallege);
     clearInterval(fcvarIntervalTimer);
 
-    $("#divMsg").fadeOut(700, function () {
-      stopChallenge();
-    });
+    $("#divMsg").fadeOut(700, () => stopChallenge());
   }, fcvarTime * 1000);
 
   // exibe os desafios na tela
   showChallengeTick(fcvarChallenge, 0);
-}
+};
 
 // Exibir desafios
-function showChallengeTick(challenges: any, i: any) {
+const showChallengeTick = (challenges: any, i: any) => {
   fcvarCurCha = challenges[i];
 
   $("#imgMsg").attr("src", "");
@@ -249,14 +246,14 @@ function showChallengeTick(challenges: any, i: any) {
   $("#divSorriso").fadeIn();
   $("#divSorriso").fadeOut(challenges[i].tempoEmSegundos * 1000); //exibe o emojji do desafio pelo periodo de challenges[i].tempoEmSegundos
 
-  fcvarIntervalChallege = setTimeout(function () {
+  fcvarIntervalChallege = setTimeout(() => {
     // Proximo desafio. Recursive
     showChallengeTick(challenges, ++i);
   }, challenges[i].tempoEmSegundos * 1000);
-}
+};
 
 // prepara captura de imagem
-function snapTick() {
+const snapTick = () => {
   let snapb64 = snap();
   let snaps: Array<string> = [];
 
@@ -275,10 +272,10 @@ function snapTick() {
     snaps[1];
 
   fcvarSnaps += snapb64;
-}
+};
 
 // captura imagem da câmera
-function snap() {
+const snap = () => {
   let video = document.querySelector("video")!;
   let canvas = document.getElementById("fc_canvas")! as HTMLCanvasElement;
   let ctx = canvas.getContext("2d")!;
@@ -337,10 +334,10 @@ function snap() {
   img.src = canvas.toDataURL("image/jpeg");
 
   return img.src;
-}
+};
 
 // finaliza desafios
-function stopChallenge() {
+const stopChallenge = () => {
   $("#imgMsg").attr("src", "");
   $("#divLoader").fadeIn();
   $("#spanMsg").text(GeneralInformation.wait);
@@ -367,7 +364,7 @@ function stopChallenge() {
       "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
     },
     data: data,
-    success: function (response) {
+    success: (response) => {
       $("#divLoader").fadeOut();
       $("#divMsg").fadeOut();
 
@@ -383,7 +380,7 @@ function stopChallenge() {
       // informa resltados
       onFinishFaceCaptcha(response);
     },
-    error: function (jqXHR, textStatus, errorThrown) {
+    error: (jqXHR, textStatus, errorThrown) => {
       $("#divLoader").fadeOut();
       Swal.fire({
         title: Errors.errorStopChallengeTitle,
@@ -394,22 +391,22 @@ function stopChallenge() {
         allowEnterKey: false,
       }).then(() => location.reload());
     },
-    beforeSend: function (xhr) {},
+    beforeSend: (xhr) => {},
   });
-}
+};
 // exibe mensagem de sucesso
-function checkAnimStart() {
+const checkAnimStart = () => {
   Swal.fire({
     title: GeneralInformation.finishedTitle,
     text: GeneralInformation.finishedMsg,
     allowOutsideClick: false,
     allowEscapeKey: false,
     allowEnterKey: false,
-  }).then(() => location.reload());
-}
+  });
+};
 
 // exibe informação de insucesso
-function crossAnimStart(responseCaptcha: any) {
+const crossAnimStart = (responseCaptcha: any) => {
   let codID = responseCaptcha.codID;
   let msg = BiometricsIds[codID] || BiometricsIds.biometricCodID;
 
@@ -420,10 +417,10 @@ function crossAnimStart(responseCaptcha: any) {
     allowEscapeKey: false,
     allowEnterKey: false,
   }).then(() => location.reload());
-}
+};
 
 // use este metodo para informar o backend
-function onFinishFaceCaptcha(response: any) {
+const onFinishFaceCaptcha = (response: any) => {
   console.log("onFinishFaceCaptcha");
   console.log(response);
 
@@ -443,7 +440,7 @@ function onFinishFaceCaptcha(response: any) {
         }
     });
     */
-}
+};
 
 function addMessage(msg: any) {
   console.log(msg);
@@ -462,23 +459,23 @@ const isMobile = () => {
 };
 
 /* SECURITY */
-function padMsg(source: any) {
+const padMsg = (source: any) => {
   let paddingChar = " ";
   let size = 16;
   let x = source.length % size;
   let padLength = size - x;
   for (let i = 0; i < padLength; i++) source += paddingChar;
   return source;
-}
+};
 
-function padKey(source: any) {
+const padKey = (source: any) => {
   if (source.length > 16) {
     return source.substring(0, 16);
   }
   return padMsg(source);
-}
+};
 
-function decChData(data: any) {
+const decChData = (data: any) => {
   let key = CryptoJS.enc.Latin1.parse(padKey(appkey));
   let iv = CryptoJS.enc.Latin1.parse(
     padKey(appkey.split("").reverse().join(""))
@@ -493,9 +490,9 @@ function decChData(data: any) {
   decripted2 = decripted2.substring(0, decripted2.lastIndexOf("}") + 1);
   decripted2 = decripted2.trim();
   return decripted2;
-}
+};
 
-function encChData(data: any) {
+const encChData = (data: any) => {
   //var appkey = appkey;
   let key = CryptoJS.enc.Latin1.parse(padKey(appkey));
   let iv = CryptoJS.enc.Latin1.parse(
@@ -507,6 +504,6 @@ function encChData(data: any) {
     mode: CryptoJS.mode.CBC,
   }).toString();
   return encodeURIComponent(result);
-}
+};
 
 export { startCapture, isMobile };

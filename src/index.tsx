@@ -1,7 +1,7 @@
 import React from "react";
 import SdkSettings from "./Interfaces/Settings/SdkSettings";
 
-import { IniciarFluxo, IniciarCamera } from "./SdkInitializer";
+import { IniciarFluxo, iniciarCamera } from "./SdkInitializer";
 import GlobalStyles, {
   Content,
   Container,
@@ -61,48 +61,7 @@ const LivenessComponent: React.FC<ComponentInterface> = ({ settings }) => {
         <canvas id="fc_canvas" style={{ display: "none" }}></canvas>
       </Content>
     </>
-
-    //#region HTML5 Content
-    // <div id="content" className="content">
-    //   <div id="container" className="container">
-    //     <div className="outer r4x3">
-    //       <div className="inner">
-    //         <div id="overlay" className="overlay"></div>
-
-    //         <div id="content-video" className="content-video">
-    //           <video id="player"></video>
-    //         </div>
-
-    //         <div id="divLoader">
-    //           <div className="loader"></div>
-    //         </div>
-
-    //         <div id="divMsg">
-    //           <img id="imgMsg" />
-    //           <span id="spanMsg">CLIQUE EM INICIAR</span>
-    //         </div>
-
-    //         <div id="divSorriso">
-    //           <img id="imgChallenge" />
-    //         </div>
-
-    //         <div id="divButton">
-    //           <button
-    //             id="btnIniciar"
-    //             onClick={() => IniciarFluxo(settings)}
-    //             className="rect green"
-    //           >
-    //             INICIAR
-    //           </button>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-
-    //   <canvas id="fc_canvas" style={{ display: "none" }}></canvas>
-    // </div>
-    //#endregion
   );
 };
 
-export { LivenessComponent as default, IniciarCamera };
+export { LivenessComponent as default, iniciarCamera };

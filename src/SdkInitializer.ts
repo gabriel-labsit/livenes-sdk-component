@@ -21,7 +21,7 @@ export const IniciarFluxo = (settings: SdkSettings) => {
   gerarCredencial();
 };
 
-export const IniciarCamera = () => startCamera();
+export const iniciarCamera = () => startCamera();
 
 // Gera credencial de acesso. Deve ser feita no backend
 const gerarCredencial = () => {
